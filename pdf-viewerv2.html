@@ -40,6 +40,8 @@
 
                 page.render({ canvasContext: context, viewport: viewport });
             });
+        }).catch(function(error) {
+            console.error('Error loading PDF:', error);
         });
     </script>
 
