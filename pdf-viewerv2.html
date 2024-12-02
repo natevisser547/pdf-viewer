@@ -15,34 +15,14 @@
             border: none;
         }
     </style>
-    <!-- Include PDF.js library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 </head>
 <body>
-    <div id="pdf-container"></div>
+    <!-- Use the modified Dropbox link for embedding the PDF -->
+    <iframe src="https://www.dropbox.com/scl/fi/htff7smq8vkx9i4v2fi93/V2-Symptomatic-Bradycardia.pdf?raw=1"></iframe>
 
-    <script>
-        const url = 'https://natevisser547.github.io/pdf-viewerv2.html/V2%20Symptomatic%20Bradycardia.pdf';
-
-        // Fetch and render the PDF
-        pdfjsLib.getDocument(url).promise.then(function(pdf) {
-            pdf.getPage(1).then(function(page) {
-                const scale = 1.5;
-                const viewport = page.getViewport({ scale: scale });
-
-                const container = document.getElementById('pdf-container');
-                const canvas = document.createElement('canvas');
-                container.appendChild(canvas);
-
-                const context = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-
-                page.render({ canvasContext: context, viewport: viewport });
-            });
-        });
-    </script>
+    <p>Your browser may not support embedded PDFs. <a href="https://www.dropbox.com/scl/fi/htff7smq8vkx9i4v2fi93/V2-Symptomatic-Bradycardia.pdf?raw=1" download>Click here to download the PDF.</a></p>
 </body>
 </html>
+
 
 
