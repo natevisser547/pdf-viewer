@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF Viewer</title>
     <style>
         body {
@@ -13,10 +15,34 @@
             border: none;
         }
     </style>
+    <!-- Include PDF.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 </head>
 <body>
-    <!-- Using Google Docs Viewer to embed the PDF -->
-    <iframe src="https://docs.google.com/gview?url=https://natevisser547.github.io/pdf-viewerv2.html/V2%20Symptomatic%20Bradycardia.pdf&embedded=true"></iframe>
+    <div id="pdf-container"></div>
+
+    <script>
+        const url = 'https://natevisser547.github.io/pdf-viewerv2.html/V2%20Symptomatic%20Bradycardia.pdf';
+
+        // Fetch and render the PDF
+        pdfjsLib.getDocument(url).promise.then(function(pdf) {
+            pdf.getPage(1).then(function(page) {
+                const scale = 1.5;
+                const viewport = page.getViewport({ scale: scale });
+
+                const container = document.getElementById('pdf-container');
+                const canvas = document.createElement('canvas');
+                container.appendChild(canvas);
+
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                page.render({ canvasContext: context, viewport: viewport });
+            });
+        });
+    </script>
 </body>
 </html>
+
 
